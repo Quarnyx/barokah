@@ -1,6 +1,6 @@
 <?php
-$sub_title = "Pengguna";
-$title = "Daftar Pengguna";
+$sub_title = "Pelanggan";
+$title = "Daftar Pelanggan";
 include 'partials/page-title.php'; ?>
 
 <div class="row mb-2">

@@ -55,4 +55,42 @@ switch ($_GET['act'] ?? '') {
             echo $conn->error;
         }
         break;
+    // proses tambah pelanggan
+    case 'tambah-pelanggan':
+        $nama_pelanggan = $_POST['nama_pelanggan'];
+        $alamat_pelanggan = $_POST['alamat_pelanggan'];
+        $no_hp = $_POST['no_hp'];
+        $sql = "INSERT INTO pelanggan (nama_pelanggan, alamat_pelanggan, no_hp) VALUES ('$nama_pelanggan', '$alamat_pelanggan', '$no_hp')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-pelanggan':
+        $nama_pelanggan = $_POST['nama_pelanggan'];
+        $alamat_pelanggan = $_POST['alamat_pelanggan'];
+        $no_hp = $_POST['no_hp'];
+        $sql = "UPDATE pelanggan SET nama_pelanggan = '$nama_pelanggan', alamat_pelanggan = '$alamat_pelanggan', no_hp = '$no_hp' WHERE id_pelanggan = '$_POST[id]'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'hapus-pelanggan':
+        $sql = "DELETE FROM pelanggan WHERE id_pelanggan = '$_POST[id]'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+
 }

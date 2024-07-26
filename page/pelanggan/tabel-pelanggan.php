@@ -41,7 +41,7 @@
             const name = $(this).data('name');
             $.ajax({
                 type: 'POST',
-                url: 'page/pengguna/edit-pengguna.php',
+                url: 'page/pelanggan/edit-pelanggan.php',
                 data: 'id=' + id + '&name=' + name,
                 success: function (data) {
                     $('.modal').modal('show');
@@ -50,32 +50,14 @@
                 }
             })
         });
-        $('#tabel-data').on('click', '#edit-password', function () {
-            const id = $(this).data('id');
-            const name = $(this).data('name');
-            alertify.prompt('Ganti Password ' + name, 'Masukkan Password Baru', '', function (evt, value) {
-                $.ajax({
-                    type: 'POST',
-                    url: 'proses.php?act=ganti-password',
-                    data: 'id=' + id + '&name=' + name + '&password=' + value,
-                    success: function (data) {
-                        alertify.success('Password Berhasil Diubah');
-                    },
-                    error: function (data) {
-                        alertify.error(data);
-                    }
-                })
-            }, function () {
-                alertify.error('Ganti password dibatalkan');
-            })
-        });
+
         $('#tabel-data').on('click', '#delete', function () {
             const id = $(this).data('id');
             const name = $(this).data('name');
-            alertify.confirm('Hapus', 'Apakah anda yakin ingin menghapus data ' + name + '?', function () {
+            alertify.confirm('Hapus', 'Apakah anda yakin ingin menghapus pelanggan ' + name + '?', function () {
                 $.ajax({
                     type: 'POST',
-                    url: 'proses.php?act=hapus-pengguna',
+                    url: 'proses.php?act=hapus-pelanggan',
                     data: 'id=' + id,
                     success: function (data) {
                         loadTable();
