@@ -7,6 +7,9 @@ include 'partials/page-title.php'; ?>
     <div class="col-sm-4">
         <button id="tambah" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
                 class="mdi mdi-plus"></i> Tambah Supplier</button>
+        <a href="page/supplier/cetak-supplier.php" target="_blank"
+            class="btn btn-primary rounded-pill waves-effect waves-light mb-3"><i class="mdi mdi-printer"></i> Cetak</a>
+
     </div>
 </div>
 <!-- end row-->
