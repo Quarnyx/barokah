@@ -129,5 +129,44 @@ switch ($_GET['act'] ?? '') {
             echo $conn->error;
         }
         break;
+    // tambah barang
+    case 'tambah-barang':
+        $nama_barang = $_POST['nama_barang'];
+        $kode_barang = $_POST['kode_barang'];
+        $harga_beli = $_POST['harga_beli'];
+        $harga_jual = $_POST['harga_jual'];
+        $sql = "INSERT INTO barang (nama_barang, kode_barang, harga_beli, harga_jual) VALUES ('$nama_barang', '$kode_barang', '$harga_beli', '$harga_jual')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-barang':
+        $nama_barang = $_POST['nama_barang'];
+        $kode_barang = $_POST['kode_barang'];
+        $harga_beli = $_POST['harga_beli'];
+        $harga_jual = $_POST['harga_jual'];
+        $sql = "UPDATE barang SET nama_barang = '$nama_barang', kode_barang = '$kode_barang', harga_beli = '$harga_beli', harga_jual = '$harga_jual' WHERE id_barang = '$_POST[id]'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'hapus-barang':
+        $sql = "DELETE FROM barang WHERE id_barang = '$_POST[id]'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
 
 }
