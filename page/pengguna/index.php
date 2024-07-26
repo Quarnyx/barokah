@@ -5,7 +5,7 @@ include 'partials/page-title.php'; ?>
 
 <div class="row mb-2">
     <div class="col-sm-4">
-        <button id="tambah" class="btn btn-danger rounded-pill waves-effect waves-light mb-3"><i
+        <button id="tambah" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
                 class="mdi mdi-plus"></i> Tambah Pengguna</button>
     </div>
 </div>
