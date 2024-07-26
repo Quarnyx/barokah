@@ -92,5 +92,42 @@ switch ($_GET['act'] ?? '') {
             echo $conn->error;
         }
         break;
+    // supplier
+    case 'tambah-supplier':
+        $nama_supplier = $_POST['nama_supplier'];
+        $alamat_supplier = $_POST['alamat_supplier'];
+        $telp = $_POST['telp'];
+        $sql = "INSERT INTO supplier (nama_supplier, alamat_supplier, telp) VALUES ('$nama_supplier', '$alamat_supplier', '$telp')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-supplier':
+        $nama_supplier = $_POST['nama_supplier'];
+        $alamat_supplier = $_POST['alamat_supplier'];
+        $telp = $_POST['telp'];
+        $sql = "UPDATE supplier SET nama_supplier = '$nama_supplier', alamat_supplier = '$alamat_supplier', telp = '$telp' WHERE id_supplier = '$_POST[id]'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'hapus-supplier':
+        $sql = "DELETE FROM supplier WHERE id_supplier = '$_POST[id]'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
 
 }

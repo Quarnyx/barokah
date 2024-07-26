@@ -86,20 +86,20 @@
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=supplier" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Supplier </span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=barang" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Barang </span>
                 </a>
             </li>
 
-            <li class="menu-title">Data Master</li>
+            <li class="menu-title">Transaksi</li>
 
             <li class="menu-item">
                 <a href="apps-chat.php" class="menu-link">
