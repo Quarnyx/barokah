@@ -26,8 +26,12 @@
                 <td>
                     <button data-id="<?= $data['id_akun'] ?>" data-name="<?= $data['nama_akun'] ?>" id="edit" type="button"
                         class="btn btn-primary">Edit</button>
-                    <button data-id="<?= $data['id_akun'] ?>" data-name="<?= $data['nama_akun'] ?>" id="delete"
-                        type="button" class="btn btn-danger">Delete</button>
+                    <?php if ($data['jenis_akun'] == '0') { ?>
+                        <button data-id="<?= $data['id_akun'] ?>" data-name="<?= $data['nama_akun'] ?>" id="delete"
+                            type="button" class="btn btn-danger">Delete</button><?php } else { ?>
+                        <button class="btn btn-default" data-toggle="tooltip" title="Tidak bisa dihapus, ini akun default"><i
+                                class="fa fa-lock"></i></button>
+                    <?php } ?>
                 </td>
             </tr>
             <?php
