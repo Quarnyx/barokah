@@ -1,5 +1,39 @@
 <?php
 
+function tambahTransaksi($id_akun_debit, $id_akun_kredit, $total, $catatan, $tanggal_transaksi, $conn)
+{
+    $sql = "INSERT INTO jurnal (id_akun_debit, id_akun_kredit, total, catatan, tanggal_transaksi) VALUES ('$id_akun_debit', '$id_akun_kredit', '$total', '$catatan', '$tanggal_transaksi')";
+    $result = $conn->query($sql);
+    if ($result) {
+        http_response_code(200);
+    } else {
+        http_response_code(500);
+        echo $conn->error;
+    }
+}
+function hapusTransaksi($id, $conn)
+{
+    $sql = "DELETE FROM jurnal WHERE id_transaksi = '$id'";
+    $result = $conn->query($sql);
+    if ($result) {
+        http_response_code(200);
+    } else {
+        http_response_code(500);
+        echo $conn->error;
+    }
+}
+
+function editPembelian($conn, $id_akun_debit, $id_akun_kredit, $total, $catatan, $id)
+{
+    $sql = "UPDATE jurnal SET id_akun_debit = '$id_akun_debit', id_akun_kredit = '$id_akun_kredit', total = '$total', catatan = '$catatan' WHERE id_transaksi = '$id'";
+    $result = $conn->query($sql);
+    if ($result) {
+        http_response_code(200);
+    } else {
+        http_response_code(500);
+        echo $conn->error;
+    }
+}
 require_once 'config.php';
 switch ($_GET['act'] ?? '') {
     case 'tambah-pengguna':
@@ -206,5 +240,115 @@ switch ($_GET['act'] ?? '') {
             echo $conn->error;
         }
         break;
+    case 'tambah-transaksi':
+        $id_akun_debit = $_POST['id_akun_debit'];
+        $id_akun_kredit = $_POST['id_akun_kredit'];
+        $total = $_POST['total'];
+        $catatan = $_POST['catatan'];
+        $tanggal_transaksi = $_POST['tanggal_transaksi'];
+        tambahTransaksi($_POST['id_akun_debit'], $_POST['id_akun_kredit'], $_POST['total'], $_POST['catatan'], $_POST['tanggal_transaksi'], $conn);
+        break;
+    case 'edit-transaksi':
+        $id_akun_debit = $_POST['id_akun_debit'];
+        $id_akun_kredit = $_POST['id_akun_kredit'];
+        $total = $_POST['total'];
+        $catatan = $_POST['catatan'];
+        $id = $_POST['id'];
+        $sql = "UPDATE jurnal SET id_akun_debit = '$id_akun_debit', id_akun_kredit = '$id_akun_kredit', total = '$total', catatan = '$catatan' WHERE id_transaksi = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'hapus-transaksi':
+        $id = $_POST['id'];
+        hapusTransaksi($_POST['id'], $conn);
+
+        break;
+    case 'tambah-pembelian':
+
+        $id_akun_debit = $_POST['id_akun_debit'];
+        $id_akun_kredit = $_POST['id_akun_kredit'];
+        $id_barang = $_POST['id_barang'];
+        $id_supplier = $_POST['id_supplier'];
+        $kode_pembelian = $_POST['kode_pembelian'];
+        $harga_beli = $_POST['harga_beli'];
+        $qty = $_POST['qty'];
+        $total = $harga_beli * $qty;
+        $catatan = 'Pembelian' . $kode_pembelian;
+        $tanggal_pembelian = $_POST['tanggal_pembelian'];
+        $gambar = $_FILES['gambar']['name'];
+        $ekstensi_diperbolehkan = array('png', 'jpg', 'jpeg', 'gif');
+        $x = explode('.', $gambar);
+        $ekstensi = strtolower(end($x));
+        $ukuran = $_FILES['gambar']['size'];
+        $file_tmp = $_FILES['gambar']['tmp_name'];
+        // generate random number for photo filename
+        $gambar = rand(1000, 1000000) . "." . $ekstensi;
+        $file_loc = 'assets/img/pembelian/' . $gambar;
+        move_uploaded_file($file_tmp, $file_loc);
+        //get file location
+        // input ke tabel transaksi
+        tambahTransaksi($id_akun_debit, $id_akun_kredit, $total, $catatan, $tanggal_pembelian, $conn);
+        // ambil id transaksi terakhir
+        $sql = "SELECT id_transaksi FROM jurnal ORDER BY id_transaksi DESC LIMIT 1";
+        $result = $conn->query($sql);
+        $row = $result->fetch_assoc();
+        $id_transaksi = $row['id_transaksi'];
+        // input ke tabel pembelian
+        $sql = "INSERT INTO pembelian (id_supplier, id_barang, qty, harga_beli, kode_pembelian, id_transaksi, gambar, tanggal_pembelian) VALUES ('$id_supplier', '$id_barang', '$qty', '$harga_beli', '$kode_pembelian', '$id_transaksi', '$gambar', '$tanggal_pembelian')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-pembelian':
+        $id_akun_debit = $_POST['id_akun_debit'];
+        $id_akun_kredit = $_POST['id_akun_kredit'];
+        $id_barang = $_POST['id_barang'];
+        $id_supplier = $_POST['id_supplier'];
+        $kode_pembelian = $_POST['kode_pembelian'];
+        $harga_beli = $_POST['harga_beli'];
+        $qty = $_POST['qty'];
+        $total = $harga_beli * $qty;
+        $catatan = 'Pembelian' . $kode_pembelian;
+        $id = $_POST['id'];
+        $id_transaksi = $_POST['id_transaksi'];
+        echo $id;
+        $sql = "UPDATE pembelian SET id_supplier = '$id_supplier', id_barang = '$id_barang', qty = '$qty', harga_beli = '$harga_beli' WHERE id_pembelian = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+
+        editPembelian($conn, $_POST['id_akun_debit'], $_POST['id_akun_kredit'], $total, $catatan, $id_transaksi);
+        break;
+
+    case 'hapus-pembelian':
+        $id = $_POST['id'];
+        $id_transaksi = $_POST['id_transaksi'];
+        echo $id_transaksi;
+        $sql = "DELETE FROM pembelian WHERE id_pembelian = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        hapusTransaksi($id_transaksi, $conn);
+
+        break;
+
+
 
 }

@@ -122,7 +122,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=pembelian" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Pembelian </span>
                 </a>
@@ -136,7 +136,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=jurnal" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Jurnal Umum </span>
                 </a>
