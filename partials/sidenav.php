@@ -70,6 +70,12 @@
 
             <li class="menu-title">Data Master</li>
 
+            <li class="menu-item">
+                <a href="?page=akun" class="menu-link">
+                    <span class="menu-icon"><i data-feather="calendar"></i></span>
+                    <span class="menu-text"> Akun </span>
+                </a>
+            </li>
 
             <li class="menu-item">
                 <a href="?page=pengguna" class="menu-link">

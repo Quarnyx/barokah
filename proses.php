@@ -168,5 +168,43 @@ switch ($_GET['act'] ?? '') {
             echo $conn->error;
         }
         break;
+    // akun
+    case 'tambah-akun':
+        $nama_akun = $_POST['nama_akun'];
+        $kode_akun = $_POST['kode_akun'];
+        $tipe_akun = $_POST['tipe_akun'];
+        $jenis_akun = 0;
+        $sql = "INSERT INTO akun (nama_akun, kode_akun, tipe_akun, jenis_akun) VALUES ('$nama_akun', '$kode_akun', '$tipe_akun', '$jenis_akun')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-akun':
+        $nama_akun = $_POST['nama_akun'];
+        $kode_akun = $_POST['kode_akun'];
+        $tipe_akun = $_POST['tipe_akun'];
+        $sql = "UPDATE akun SET nama_akun = '$nama_akun', kode_akun = '$kode_akun', tipe_akun = '$tipe_akun' WHERE id_akun = '$_POST[id]'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'hapus-akun':
+        $sql = "DELETE FROM akun WHERE id_akun = '$_POST[id]'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
 
 }
