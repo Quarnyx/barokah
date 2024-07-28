@@ -115,7 +115,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=return-penjualan" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Retur Penjualan </span>
                 </a>
@@ -129,7 +129,7 @@
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=return-pembelian" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Retur Pembelian </span>
                 </a>
@@ -145,49 +145,49 @@
             <li class="menu-title">Laporan</li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=stok" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Stok Produk </span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=laporan-penjualan" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Penjualan </span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=laporan-pembelian" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Pembelian </span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=laporan-return-penjualan" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Retur Penjualan </span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=laporan-return-pembelian" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Retur Pembelian </span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=neraca" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Neraca </span>
                 </a>
             </li>
 
             <li class="menu-item">
-                <a href="apps-chat.php" class="menu-link">
+                <a href="?page=laba-rugi" class="menu-link">
                     <span class="menu-icon"><i data-feather="message-square"></i></span>
                     <span class="menu-text"> Laba/Rugi </span>
                 </a>

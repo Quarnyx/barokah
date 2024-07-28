@@ -254,7 +254,8 @@ switch ($_GET['act'] ?? '') {
         $total = $_POST['total'];
         $catatan = $_POST['catatan'];
         $id = $_POST['id'];
-        $sql = "UPDATE jurnal SET id_akun_debit = '$id_akun_debit', id_akun_kredit = '$id_akun_kredit', total = '$total', catatan = '$catatan' WHERE id_transaksi = '$id'";
+        $tanggal_transaksi = $_POST['tanggal_transaksi'];
+        $sql = "UPDATE jurnal SET id_akun_debit = '$id_akun_debit', id_akun_kredit = '$id_akun_kredit', total = '$total', catatan = '$catatan', tanggal_transaksi = '$tanggal_transaksi' WHERE id_transaksi = '$id'";
         $result = $conn->query($sql);
         if ($result) {
             http_response_code(200);
@@ -432,6 +433,92 @@ switch ($_GET['act'] ?? '') {
             echo $conn->error;
         }
         break;
+    case 'tambah-return-penjualan':
+        $tanggal_return_penjualan = $_POST['tanggal_return_penjualan'];
+        $kode_return_penjualan = $_POST['kode_return_penjualan'];
+        $catatan = $_POST['catatan'];
+        $id_barang = $_POST['id_barang'];
+        $jumlah = $_POST['jumlah'];
+        $sql = "INSERT INTO return_penjualan (id_barang, kode_return_penjualan, tanggal_return_penjualan, catatan, jumlah) VALUES ('$id_barang', '$kode_return_penjualan', '$tanggal_return_penjualan', '$catatan', '$jumlah')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-return-penjualan':
+        $id = $_POST['id'];
+        $id_barang = $_POST['id_barang'];
+        $catatan = $_POST['catatan'];
+        $jumlah = $_POST['jumlah'];
+        $tanggal_return_penjualan = $_POST['tanggal_return_penjualan'];
+        $sql = "UPDATE return_penjualan SET tanggal_return_penjualan = '$tanggal_return_penjualan', jumlah = '$jumlah', id_barang = '$id_barang', catatan = '$catatan' WHERE id_return_penjualan = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+
+        break;
+    case 'hapus-return-penjualan':
+        $id = $_POST['id'];
+        $sql = "DELETE FROM return_penjualan WHERE id_return_penjualan = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    // return pembelian
+    case 'tambah-return-pembelian':
+        $tanggal_return_pembelian = $_POST['tanggal_return_pembelian'];
+        $kode_return_pembelian = $_POST['kode_return_pembelian'];
+        $catatan = $_POST['catatan'];
+        $id_barang = $_POST['id_barang'];
+        $jumlah = $_POST['jumlah'];
+        $sql = "INSERT INTO return_pembelian (id_barang, kode_return_pembelian, tanggal_return_pembelian, catatan, jumlah) VALUES ('$id_barang', '$kode_return_pembelian', '$tanggal_return_pembelian', '$catatan', '$jumlah')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-return-pembelian':
+        $id = $_POST['id'];
+        $id_barang = $_POST['id_barang'];
+        $catatan = $_POST['catatan'];
+        $jumlah = $_POST['jumlah'];
+        $tanggal_return_pembelian = $_POST['tanggal_return_pembelian'];
+        $sql = "UPDATE return_pembelian SET tanggal_return_pembelian = '$tanggal_return_pembelian', jumlah = '$jumlah', id_barang = '$id_barang', catatan = '$catatan' WHERE id_return_pembelian = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+
+        break;
+    case 'hapus-return-pembelian':
+        $id = $_POST['id'];
+        $sql = "DELETE FROM return_pembelian WHERE id_return_pembelian = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+
 
 
 

@@ -28,6 +28,33 @@ switch ($_GET['page'] ?? '') {
     case 'jurnal':
         include 'page/jurnal/index.php';
         break;
+    case 'stok':
+        include 'page/laporan-stok/index.php';
+        break;
+    case 'laporan-penjualan':
+        include 'page/laporan-penjualan/index.php';
+        break;
+    case 'laporan-pembelian':
+        include 'page/laporan-pembelian/index.php';
+        break;
+    case 'neraca':
+        include 'page/neraca/index.php';
+        break;
+    case 'laba-rugi':
+        include 'page/laba-rugi/index.php';
+        break;
+    case 'return-penjualan':
+        include 'page/return-penjualan/index.php';
+        break;
+    case 'return-pembelian':
+        include 'page/return-pembelian/index.php';
+        break;
+    case 'laporan-return-pembelian':
+        include 'page/laporan-return-pembelian/index.php';
+        break;
+    case 'laporan-return-penjualan':
+        include 'page/laporan-return-penjualan/index.php';
+        break;
     default:
         include 'page/404.php';
 }
