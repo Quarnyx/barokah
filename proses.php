@@ -348,6 +348,90 @@ switch ($_GET['act'] ?? '') {
         hapusTransaksi($id_transaksi, $conn);
 
         break;
+    case 'tambah-penjualan-detail':
+        $id_barang = $_POST['id_barang'];
+        $qty = $_POST['qty'];
+        $harga_beli = $_POST['harga_beli'];
+        $harga_jual = $_POST['harga_jual'];
+        $tanggal_penjualan = date('Y-m-d');
+        $kode_penjualan = $_POST['kode_penjualan'];
+        $sql = "INSERT INTO detail_penjualan (id_barang, qty, harga_beli, harga_jual, kode_penjualan, tanggal_penjualan) VALUES ('$id_barang', '$qty', '$harga_beli', '$harga_jual', '$kode_penjualan', '$tanggal_penjualan')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'edit-penjualan-detail':
+        $id_barang = $_POST['id_barang'];
+        $qty = $_POST['qty'];
+        $harga_jual = $_POST['harga_jual'];
+        $id = $_POST['id'];
+        echo $id;
+        $sql = "UPDATE detail_penjualan SET id_barang = '$id_barang', qty = '$qty', harga_jual = '$harga_jual' WHERE id_detail_penjualan = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'hapus-penjualan-detail':
+        $id = $_POST['id'];
+        $sql = "DELETE FROM detail_penjualan WHERE id_detail_penjualan = '$id'";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
+    case 'tambah-penjualan':
+        // simpan persediaan - hpp
+        $id_akun_debit = 6;
+        $id_akun_kredit = 4;
+        $total = $_POST['harga_beli'];
+        $catatan = 'Penjualan HPP ' . $_POST['kode_penjualan'];
+        $tanggal_transaksi = date('Y-m-d');
+        $sql = "INSERT INTO jurnal (id_akun_debit, id_akun_kredit, total, catatan, tanggal_transaksi    ) VALUES ('$id_akun_debit', '$id_akun_kredit', '$total', '$catatan', '$tanggal_transaksi')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        // simpan kas pendapatan
+        $id_akun_debit = 2;
+        $id_akun_kredit = 5;
+        $total = $_POST['harga_jual'];
+        $catatan = 'Penjualan Masuk ' . $_POST['kode_penjualan'];
+        $tanggal_transaksi = date('Y-m-d');
+        tambahTransaksi($id_akun_debit, $id_akun_kredit, $total, $catatan, $tanggal_transaksi, $conn);
+        // ambil id transaksi terakhir
+        $sql = "SELECT id_transaksi FROM jurnal ORDER BY id_transaksi DESC LIMIT 1";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        $id_jurnal = $data['id_transaksi'];
+        // simpan penjualan
+        $id_user = $_POST['id_user'];
+        $total = $_POST['total'];
+        $id_pelanggan = $_POST['id_pelanggan'];
+        $kode_penjualan = $_POST['kode_penjualan'];
+        $tanggal_penjualan = $_POST['tanggal_penjualan'];
+        $sql = "INSERT INTO penjualan (id_user, total, id_pelanggan, kode_penjualan, tanggal_penjualan, id_transaksi) VALUES ('$id_user', '$total', '$id_pelanggan', '$kode_penjualan', '$tanggal_penjualan', '$id_jurnal')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        break;
 
 
 

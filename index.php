@@ -15,6 +15,8 @@ if (!$_SESSION['id_user']) {
     <!-- Plugins css -->
     <link href="assets/libs/flatpickr/flatpickr.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/libs/selectize/css/selectize.bootstrap3.css" rel="stylesheet" type="text/css" />
+    <link href="assets/libs/select2/css/select2.min.css" rel="stylesheet" type="text/css" />
+
 
     <?php include 'partials/head-css.php'; ?>
 </head>
@@ -56,7 +58,7 @@ if (!$_SESSION['id_user']) {
     </div>
     <!-- END wrapper -->
     <!--  Modal content for the Large example -->
-    <div class="modal fade" id="bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">

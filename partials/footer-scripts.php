@@ -21,3 +21,4 @@
 <script src="assets/js/pages/datatables.init.js"></script>
 
 <script src="assets/libs/alertify/alertify.js"></script>
+<script src="assets/libs/select2/js/select2.min.js"></script>
