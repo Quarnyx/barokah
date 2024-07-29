@@ -28,8 +28,8 @@ $row = $result->fetch_assoc();
                 <select class="form-select" name="level">
                     <option value="Karyawan" <?php if ($row['level'] == 'Karyawan')
                         echo 'selected' ?>>Karyawan</option>
-                        <option value="Manager" <?php if ($row['level'] == 'Manager')
-                        echo 'selected' ?>>Manager</option>
+                        <option value="Pemilik" <?php if ($row['level'] == 'Pemilik')
+                        echo 'selected' ?>>Pemilik</option>
                     </select>
                 </div>
             </div>

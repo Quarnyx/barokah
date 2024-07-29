@@ -22,30 +22,31 @@
             <button class="button-toggle-menu">
                 <i class="mdi mdi-menu"></i>
             </button>
-
-            <!-- Dropdown Menu -->
-            <div class="dropdown d-none d-xl-block">
-                <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#"
-                    role="button" aria-haspopup="false" aria-expanded="false">
-                    Pintasan
-                    <i class="mdi mdi-chevron-down ms-1"></i>
-                </a>
-                <div class="dropdown-menu">
-                    <!-- item-->
-                    <a href="?page=penjualan" class="dropdown-item">
-                        <i class="fe-briefcase me-1"></i>
-                        <span>Penjualan</span>
+            <?php if ($_SESSION['level'] == 'Karyawan') { ?>
+                <!-- Dropdown Menu -->
+                <div class="dropdown d-none d-xl-block">
+                    <a class="nav-link dropdown-toggle waves-effect waves-light" data-bs-toggle="dropdown" href="#"
+                        role="button" aria-haspopup="false" aria-expanded="false">
+                        Pintasan
+                        <i class="mdi mdi-chevron-down ms-1"></i>
                     </a>
+                    <div class="dropdown-menu">
+                        <!-- item-->
+                        <a href="?page=penjualan" class="dropdown-item">
+                            <i class="fe-briefcase me-1"></i>
+                            <span>Penjualan</span>
+                        </a>
 
-                    <!-- item-->
-                    <a href="?page=pembelian" class="dropdown-item">
-                        <i class="fe-user me-1"></i>
-                        <span>Pembelian</span>
-                    </a>
+                        <!-- item-->
+                        <a href="?page=pembelian" class="dropdown-item">
+                            <i class="fe-user me-1"></i>
+                            <span>Pembelian</span>
+                        </a>
 
 
+                    </div>
                 </div>
-            </div>
+            <?php } ?>
 
 
         </div>

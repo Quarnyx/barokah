@@ -16,7 +16,7 @@
                 <label class="form-label">Level</label>
                 <select class="form-select" name="level">
                     <option value="Karyawan">Karyawan</option>
-                    <option value="Manager">Manager</option>
+                    <option value="Pemilik">Pemilik</option>
                 </select>
             </div>
             <div class="mb-3">

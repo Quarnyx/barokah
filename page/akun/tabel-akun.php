@@ -22,7 +22,11 @@
                 <td><?= $data['nama_akun'] ?></td>
                 <td><?= $data['kode_akun'] ?></td>
                 <td><?= $data['tipe_akun'] ?></td>
-                <td>000</td>
+                <td><?php
+                $sqlsaldo = mysqli_query($conn, "SELECT SUM(debit) - SUM(kredit) AS saldo FROM v_jurnal WHERE nama_akun = '$data[nama_akun]'");
+                $datasaldo = mysqli_fetch_array($sqlsaldo);
+                echo number_format(abs($datasaldo['saldo']), 0, ',', '.');
+                ?></td>
                 <td>
                     <button data-id="<?= $data['id_akun'] ?>" data-name="<?= $data['nama_akun'] ?>" id="edit" type="button"
                         class="btn btn-primary">Edit</button>

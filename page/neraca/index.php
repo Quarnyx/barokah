@@ -275,11 +275,27 @@ include 'partials/page-title.php'; ?>
                                             <?php echo number_format($modal['kredit'], 0, ',', '.') ?>
                                         </td>
                                     <tr>
-                                    <tr>
-                                        <td style="padding:0px 0px 0px 25px !important">Jumlah
-                                            Kewajiban</td>
+                                        <th>Laba</th>
                                         <?php
-                                        $totalwajib = $modal['kredit'] + $ulancar['kredit'];
+                                        $sqllaba = "SELECT sum(kredit) AS penkredit FROM v_jurnal WHERE tipe_akun = 'Pendapatan' $kondisi";
+                                        $laba = $conn->query($sqllaba);
+                                        $laba = $laba->fetch_array();
+                                        $sqlhpp = "SELECT sum(debit) AS hppdebit FROM v_jurnal WHERE tipe_akun = 'Harga Pokok Penjualan' $kondisi";
+                                        $hpp = $conn->query($sqlhpp);
+                                        $hpp = $hpp->fetch_array();
+                                        $sqlbeban = "SELECT sum(debit) AS bebandebit FROM v_jurnal WHERE tipe_akun = 'Beban' $kondisi";
+                                        $beban = $conn->query($sqlbeban);
+                                        $beban = $beban->fetch_array();
+                                        $laba = $laba['penkredit'] - $hpp['hppdebit'] - $beban['bebandebit'];
+
+                                        ?>
+                                        <td class="text-end">Rp
+                                            <?php echo number_format($laba, 0, ',', '.') ?>
+                                        </td>
+                                    <tr>
+                                        <td style="padding:0px 0px 0px 25px !important">Total Passiva</td>
+                                        <?php
+                                        $totalwajib = $modal['kredit'] + $ulancar['kredit'] + $laba;
                                         ?>
                                         <td style="padding:0px !important" class="text-end">Rp
                                             <?php echo number_format($totalwajib, 0, ',', '.') ?>

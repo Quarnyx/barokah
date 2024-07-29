@@ -67,132 +67,165 @@
                     <span class="menu-text"> Home </span>
                 </a>
             </li>
+            <?php
+            if ($_SESSION['level'] == "Pemilik") {
+                ?>
+                <li class="menu-title">Data Master</li>
 
-            <li class="menu-title">Data Master</li>
+                <li class="menu-item">
+                    <a href="?page=akun" class="menu-link">
+                        <span class="menu-icon"><i data-feather="calendar"></i></span>
+                        <span class="menu-text"> Akun </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=akun" class="menu-link">
-                    <span class="menu-icon"><i data-feather="calendar"></i></span>
-                    <span class="menu-text"> Akun </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=pengguna" class="menu-link">
+                        <span class="menu-icon"><i data-feather="calendar"></i></span>
+                        <span class="menu-text"> Pengguna </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=pengguna" class="menu-link">
-                    <span class="menu-icon"><i data-feather="calendar"></i></span>
-                    <span class="menu-text"> Pengguna </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=pelanggan" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Pelanggan </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=pelanggan" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Pelanggan </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=supplier" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Supplier </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=supplier" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Supplier </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=barang" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Barang </span>
+                    </a>
+                </li>
+            <?php } ?>
+            <?php
+            if ($_SESSION['level'] == "Karyawan") {
+                ?>
+                <li class="menu-title">Transaksi</li>
 
-            <li class="menu-item">
-                <a href="?page=barang" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Barang </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=penjualan" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Penjualan </span>
+                    </a>
+                </li>
 
-            <li class="menu-title">Transaksi</li>
+                <li class="menu-item">
+                    <a href="?page=return-penjualan" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Retur Penjualan </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=penjualan" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Penjualan </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=pembelian" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Pembelian </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=return-penjualan" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Retur Penjualan </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=return-pembelian" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Retur Pembelian </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=pembelian" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Pembelian </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=jurnal" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Jurnal Umum </span>
+                    </a>
+                </li>
+            <?php } ?>
+            <?php
+            if ($_SESSION['level'] == "Pemilik") {
+                ?>
+                <li class="menu-title">Laporan</li>
 
-            <li class="menu-item">
-                <a href="?page=return-pembelian" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Retur Pembelian </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=stok" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Stok Produk </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=jurnal" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Jurnal Umum </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=laporan-penjualan" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Penjualan </span>
+                    </a>
+                </li>
 
-            <li class="menu-title">Laporan</li>
+                <li class="menu-item">
+                    <a href="?page=laporan-pembelian" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Pembelian </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=stok" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Stok Produk </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=laporan-return-penjualan" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Retur Penjualan </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=laporan-penjualan" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Penjualan </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=laporan-return-pembelian" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Retur Pembelian </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=laporan-pembelian" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Pembelian </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=neraca" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Neraca </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=laporan-return-penjualan" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Retur Penjualan </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=laba-rugi" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Laba/Rugi </span>
+                    </a>
+                </li>
+            <?php } ?>
+            <?php
+            if ($_SESSION['level'] == "Karyawan") {
+                ?>
+                <li class="menu-title">Laporan</li>
+                <li class="menu-item">
+                    <a href="?page=stok" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Stok Produk </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=laporan-return-pembelian" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Retur Pembelian </span>
-                </a>
-            </li>
+                <li class="menu-item">
+                    <a href="?page=laporan-penjualan" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Penjualan </span>
+                    </a>
+                </li>
 
-            <li class="menu-item">
-                <a href="?page=neraca" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Neraca </span>
-                </a>
-            </li>
-
-            <li class="menu-item">
-                <a href="?page=laba-rugi" class="menu-link">
-                    <span class="menu-icon"><i data-feather="message-square"></i></span>
-                    <span class="menu-text"> Laba/Rugi </span>
-                </a>
-            </li>
-
+                <li class="menu-item">
+                    <a href="?page=laporan-pembelian" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Pembelian </span>
+                    </a>
+                </li>
+            <?php } ?>
 
 
 
