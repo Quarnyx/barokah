@@ -163,7 +163,13 @@ include 'partials/page-title.php'; ?>
                             ?>
                         </tbody>
                     </table>
-
+                    <div class="mt-3" style="text-align:end;">
+                        <hr>
+                        <p class="font-weight-bold">Kendal, <?= tanggal(date('Y-m-d')) ?><br>Mengetahui,</p>
+                        <div class="mt-5">
+                            <p class="font-weight-bold"><?php echo $_SESSION['nama_user']; ?></p>
+                        </div>
+                    </div>
                     <div class="mt-4 mb-1">
                         <div class="text-end d-print-none">
                             <a href="javascript:window.print()" class="btn btn-primary waves-effect waves-light"><i

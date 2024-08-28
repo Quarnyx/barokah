@@ -25,6 +25,9 @@
                 <td><?php
                 $sqlsaldo = mysqli_query($conn, "SELECT SUM(debit) - SUM(kredit) AS saldo FROM v_jurnal WHERE nama_akun = '$data[nama_akun]'");
                 $datasaldo = mysqli_fetch_array($sqlsaldo);
+                if (empty($datasaldo['saldo'])) {
+                    $datasaldo['saldo'] = 0;
+                }
                 echo number_format(abs($datasaldo['saldo']), 0, ',', '.');
                 ?></td>
                 <td>

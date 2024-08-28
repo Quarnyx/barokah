@@ -36,16 +36,16 @@
 
                                 <div class="mb-3">
                                     <label for="username" class="form-label">Username</label>
-                                    <input class="form-control" type="username" id="username"
-                                        placeholder="Enter your email" name="username">
+                                    <input class="form-control" type="username" id="username" placeholder="Username"
+                                        name="username">
                                     <span class="text-danger"></span>
                                 </div>
 
                                 <div class="mb-3">
                                     <label for="password" class="form-label">Password</label>
                                     <div class="input-group input-group-merge">
-                                        <input type="password" id="password" class="form-control"
-                                            placeholder="Enter your password" name="password">
+                                        <input type="password" id="password" class="form-control" placeholder="Password"
+                                            name="password">
                                         <div class="input-group-text" data-password="false">
                                             <span class="password-eye"></span>
                                         </div>

@@ -83,7 +83,7 @@
                 loadTable();
 
                 // alertify pesan sukses
-                alertify.success('Pelanggan Berhasil Ditambah');
+                alertify.success('Transaksi Berhasil Ditambah');
 
             },
             error: function (data) {

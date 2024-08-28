@@ -397,7 +397,7 @@ switch ($_GET['act'] ?? '') {
         $id_akun_kredit = 4;
         $total = $_POST['harga_beli'];
         $catatan = 'Penjualan HPP ' . $_POST['kode_penjualan'];
-        $tanggal_transaksi = date('Y-m-d');
+        $tanggal_transaksi = $_POST['tanggal_penjualan'];
         $sql = "INSERT INTO jurnal (id_akun_debit, id_akun_kredit, total, catatan, tanggal_transaksi    ) VALUES ('$id_akun_debit', '$id_akun_kredit', '$total', '$catatan', '$tanggal_transaksi')";
         $result = $conn->query($sql);
         if ($result) {
@@ -411,7 +411,7 @@ switch ($_GET['act'] ?? '') {
         $id_akun_kredit = 5;
         $total = $_POST['harga_jual'];
         $catatan = 'Penjualan Masuk ' . $_POST['kode_penjualan'];
-        $tanggal_transaksi = date('Y-m-d');
+        $tanggal_transaksi = $_POST['tanggal_penjualan'];
         tambahTransaksi($id_akun_debit, $id_akun_kredit, $total, $catatan, $tanggal_transaksi, $conn);
         // ambil id transaksi terakhir
         $sql = "SELECT id_transaksi FROM jurnal ORDER BY id_transaksi DESC LIMIT 1";
@@ -425,6 +425,15 @@ switch ($_GET['act'] ?? '') {
         $kode_penjualan = $_POST['kode_penjualan'];
         $tanggal_penjualan = $_POST['tanggal_penjualan'];
         $sql = "INSERT INTO penjualan (id_user, total, id_pelanggan, kode_penjualan, tanggal_penjualan, id_transaksi) VALUES ('$id_user', '$total', '$id_pelanggan', '$kode_penjualan', '$tanggal_penjualan', '$id_jurnal')";
+        $result = $conn->query($sql);
+        if ($result) {
+            http_response_code(200);
+        } else {
+            http_response_code(500);
+            echo $conn->error;
+        }
+        //update detail penjualan
+        $sql = "UPDATE detail_penjualan SET tanggal_penjualan = '$tanggal_penjualan' WHERE kode_penjualan = '$kode_penjualan'";
         $result = $conn->query($sql);
         if ($result) {
             http_response_code(200);

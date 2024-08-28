@@ -7,6 +7,8 @@ include 'partials/page-title.php'; ?>
     <div class="col-sm-4">
         <button id="tambah" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
                 class="mdi mdi-plus"></i> Tambah Akun</button>
+        <button id="tambah-saldo" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
+                class="mdi mdi-plus"></i> Tambah Saldo</button>
         <a href="page/akun/cetak-akun.php" target="_blank"
             class="btn btn-primary rounded-pill waves-effect waves-light mb-3"><i class="mdi mdi-printer"></i> Cetak</a>
     </div>
@@ -38,6 +40,12 @@ include 'partials/page-title.php'; ?>
             $('.modal-title').html('Tambah akun');
             // load form
             $('.modal-body').load('page/akun/tambah-akun.php');
+        });
+        $('#tambah-saldo').on('click', function () {
+            $('.modal').modal('show');
+            $('.modal-title').html('Tambah Transaksi');
+            // load form
+            $('.modal-body').load('page/jurnal/tambah-transaksi.php');
         });
     });
 </script>

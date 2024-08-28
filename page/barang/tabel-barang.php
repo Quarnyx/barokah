@@ -6,6 +6,7 @@
             <th>Kode Barang</th>
             <th>Harga Beli</th>
             <th>Harga Jual</th>
+            <th>Stok</th>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -23,6 +24,15 @@
                 <td><?= $data['kode_barang'] ?></td>
                 <td><?= "Rp. " . number_format($data['harga_beli'], 0, ',', '.') ?></td>
                 <td><?= "Rp. " . number_format($data['harga_jual'], 0, ',', '.') ?></td>
+                <td><?php
+                $sqlbeli = "SELECT SUM(qty) FROM pembelian WHERE id_barang = '$data[id_barang]'";
+                $sqljual = "SELECT SUM(qty) FROM detail_penjualan WHERE id_barang = '$data[id_barang]'";
+                $querybeli = mysqli_query($conn, $sqlbeli);
+                $queryjual = mysqli_query($conn, $sqljual);
+                $beli = mysqli_fetch_array($querybeli);
+                $jual = mysqli_fetch_array($queryjual);
+                echo $beli[0] - $jual[0];
+                ?></td>
                 <td>
                     <button data-id="<?= $data['id_barang'] ?>" data-name="<?= $data['nama_barang'] ?>" id="edit"
                         type="button" class="btn btn-primary">Edit</button>
