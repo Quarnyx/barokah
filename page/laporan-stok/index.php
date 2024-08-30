@@ -153,8 +153,7 @@ include 'partials/page-title.php'; ?>
                                     </td>
                                     <td>
                                         <?php
-                                        $stok = $initdatain['qty'] + $datain['qty'] - $dataout['qty'];
-                                        echo $stok;
+                                        echo $initstok + $datain['qty'] - $dataout['qty'];
                                         ?>
                                     </td>
                                 </tr>
