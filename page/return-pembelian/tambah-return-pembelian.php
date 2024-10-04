@@ -48,6 +48,28 @@
         </div>
     </div>
     <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label for="simpleinput" class="form-label">Pemosok</label>
+                <select class="form-control select2" id="pemasok" name="id_pemasok" data-toggle="select2">
+                    <option value="">Pilih Pemasok</option>
+                    <?php
+                    require_once '../../config.php';
+                    $sql = "SELECT * FROM pemasok";
+                    $result = $conn->query($sql);
+                    while ($row = $result->fetch_assoc()) {
+                        ?>
+
+                        <option value="<?= $row['id_pemasok'] ?>"><?= $row['nama_pemasok'] ?></option>
+                        <?php
+                    }
+
+                    ?>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-lg-12">
             <div class="mb-3">
                 <label for="simpleinput" class="form-label">Keterangan</label>
@@ -64,6 +86,9 @@
 </form>
 
 <script>
+    $("#pemasok").select2({
+
+    })
     $("#tambah-return-pembelian").submit(function (e) {
         e.preventDefault();
         var formData = new FormData(this);

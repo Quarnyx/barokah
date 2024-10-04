@@ -7,7 +7,7 @@ include 'partials/page-title.php'; ?>
     <div class="col-xl-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title mb-0">Filter Tanggal</h5>
+                <h5 class="card-title mb-0">Filter Periode</h5>
             </div><!-- end card header -->
             <?php
             function tanggal($tanggal)
@@ -29,12 +29,29 @@ include 'partials/page-title.php'; ?>
                 $split = explode('-', $tanggal);
                 return $split[2] . ' ' . $bulan[(int) $split[1]] . ' ' . $split[0];
             }
-            $daritanggal = "";
-            $sampaitanggal = "";
+            function bulan($inputbulan)
+            {
+                $bulan = array(
+                    01 => 'Januari',
+                    'Februari',
+                    'Maret',
+                    'April',
+                    'Mei',
+                    'Juni',
+                    'Juli',
+                    'Agustus',
+                    'September',
+                    'Oktober',
+                    'November',
+                    'Desember'
+                );
+                return $bulan[(int) $inputbulan];
+            }
+            if (isset($_GET['bulan'])) {
+                $titlebulan = bulan($_GET['bulan']);
+            } else {
+                $titlebulan = bulan(date('m'));
 
-            if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal'])) {
-                $daritanggal = $_GET['dari_tanggal'];
-                $sampaitanggal = $_GET['sampai_tanggal'];
             }
 
             ?>
@@ -42,14 +59,22 @@ include 'partials/page-title.php'; ?>
                 <form action="" method="get" class="row g-3">
                     <input type="hidden" name="page" value="laba-rugi">
                     <div class="col-md-6">
-                        <label for="validationDefault01" class="form-label">Dari Tanggal</label>
-                        <input type="date" class="form-control" id="validationDefault01" required=""
-                            name="dari_tanggal">
-                    </div>
-                    <div class="col-md-6">
-                        <label for="validationDefault02" class="form-label">Sampai Tanggal</label>
-                        <input type="date" class="form-control" id="validationDefault02" required=""
-                            name="sampai_tanggal">
+                        <label for="validationDefault01" class="form-label">Bulan</label>
+                        <select class="form-select" name="bulan" id="validationDefault01">
+                            <option selected disabled value="">Pilih Bulan</option>
+                            <option value="01">Januari</option>
+                            <option value="02">Februari</option>
+                            <option value="03">Maret</option>
+                            <option value="04">April</option>
+                            <option value="05">Mei</option>
+                            <option value="06">Juni</option>
+                            <option value="07">Juli</option>
+                            <option value="08">Agustus</option>
+                            <option value="09">September</option>
+                            <option value="10">Oktober</option>
+                            <option value="11">November</option>
+                            <option value="12">Desember</option>
+                        </select>
                     </div>
                     <div class="col-12">
                         <button class="btn btn-primary" type="submit">Pilih</button>
@@ -60,47 +85,26 @@ include 'partials/page-title.php'; ?>
     </div>
 </div>
 <!-- end row-->
-<?php if (isset($_GET['dari_tanggal']) && isset($_GET['sampai_tanggal'])) { ?>
+<?php if (isset($_GET['bulan'])) { ?>
     <?php
     require_once 'config.php';
-    if (isset($_GET['dari-tanggal']) && isset($_GET['sampai-tanggal'])) {
-        $daribulan = $_GET['dari-tanggal'];
-        $sampaibulan = $_GET['sampai-tanggal'];
-        $date = DateTime::createFromFormat('Y-m-d', $sampaibulan);
-        $year = $date->format('Y');
-        function tanggal($tanggal)
-        {
-            $bulan = array(
-                1 => 'Januari',
-                'Februari',
-                'Maret',
-                'April',
-                'Mei',
-                'Juni',
-                'Juli',
-                'Agustus',
-                'September',
-                'Oktober',
-                'November',
-                'Desember'
-            );
-            $split = explode('-', $tanggal);
-            return $bulan[(int) $split[1]];
-        }
+    if (isset($_GET['bulan'])) {
+        $bulan = $_GET['bulan'];
+
     }
 
-    if (!isset($_GET['dari-tanggal']) && !isset($_GET['sampai-tanggal'])) {
+    if (!isset($_GET['bulan'])) {
         $kondisi = "";
     } else {
-        $kondisi = "AND tanggal_transaksi BETWEEN '$daribulan' AND '$sampaibulan'";
+        $kondisi = "AND MONTH(tanggal_transaksi) = '$bulan'";
     }
     ?>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <h4 class="text-center mt-3 mb-3"><b>TOKO BAROKAH</b><br><b>LAPORAN LABA RUGI</b><br>Periode <?php
-                if (!empty($_GET["dari_tanggal"]) && !empty($_GET["sampai_tanggal"])) {
-                    echo tanggal($_GET['dari_tanggal']) . " s.d " . tanggal($_GET['sampai_tanggal']);
+                if (!empty($_GET["bulan"])) {
+                    echo 'Bulan ' . bulan($_GET['bulan']);
                 } else {
                     echo "Semua";
                 }
@@ -112,6 +116,22 @@ include 'partials/page-title.php'; ?>
                         <tr>
                             <th>Pendapatan</th>
                         </tr>
+                        <?php
+                        $sqlutang = "SELECT SUM(debit) AS debit, v_jurnal.tipe_akun, v_jurnal.nama_akun FROM v_jurnal WHERE catatan like '%retur%' $kondisi GROUP BY v_jurnal.id_transaksi";
+                        $totalutang = 0;
+                        $utang = $conn->query($sqlutang);
+                        while ($row = $utang->fetch_array()) {
+                            ?>
+                            <tr>
+                                <td style="padding:0px 0px 0px 15px !important">
+                                    Retur Pembelian
+                                </td>
+                                <td style="padding:0px !important" class="text-end">Rp
+                                    <?php echo number_format($row['debit'], 0, ',', '.');
+                                    $totalutang += $row['debit']; ?>
+                                </td>
+                            </tr>
+                        <?php } ?>
                         <?php
                         $sqlaktiva = "SELECT SUM(kredit) - SUM(debit) AS kredit,
                                                                         v_jurnal.tipe_akun,
@@ -165,7 +185,7 @@ include 'partials/page-title.php'; ?>
                         <tr>
                             <td style="padding:0px 0px 0px 15px !important">Laba Kotor</td>
                             <td style="padding:0px !important" class="text-end">Rp
-                                <?php echo number_format($labakotor = $totalkredit - $totalhpp, 0, ',', '.') ?>
+                                <?php echo number_format($labakotor = ($totalkredit - $totalhpp) + $totalutang, 0, ',', '.') ?>
                             </td>
                         <tr>
                             <th>Beban</th>
@@ -193,6 +213,7 @@ include 'partials/page-title.php'; ?>
                                 </td>
                             </tr>
                         <?php } ?>
+
                         <tr>
                             <td style="padding:0px 0px 0px 15px !important">Total Beban</td>
                             <td style="padding:0px !important" class="text-end">Rp

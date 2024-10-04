@@ -1,11 +1,11 @@
 <?php
 
-require_once ('config.php');
+require_once('config.php');
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
-    $password = md5($_POST['password']);
+    $password = $_POST['password'];
 
     // Fetch user by username
     $stmt = $conn->prepare("SELECT * FROM pengguna WHERE username = ?");

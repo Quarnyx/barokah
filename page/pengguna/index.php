@@ -2,16 +2,21 @@
 $sub_title = "Pengguna";
 $title = "Daftar Pengguna";
 include 'partials/page-title.php'; ?>
+<?php
+if ($_SESSION['level'] == "Pemilik") {
+    ?>
+    <div class="row mb-2">
+        <div class="col-sm-4">
+            <button id="tambah" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
+                    class="mdi mdi-plus"></i> Tambah Pengguna</button>
+            <a href="page/pengguna/cetak-pengguna.php" target="_blank"
+                class="btn btn-primary rounded-pill waves-effect waves-light mb-3"><i class="mdi mdi-printer"></i> Cetak</a>
 
-<div class="row mb-2">
-    <div class="col-sm-4">
-        <button id="tambah" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
-                class="mdi mdi-plus"></i> Tambah Pengguna</button>
-        <a href="page/pengguna/cetak-pengguna.php" target="_blank"
-            class="btn btn-primary rounded-pill waves-effect waves-light mb-3"><i class="mdi mdi-printer"></i> Cetak</a>
-
+        </div>
     </div>
-</div>
+    <?php
+}
+?>
 <!-- end row-->
 <div class="row">
     <div class="col-12">

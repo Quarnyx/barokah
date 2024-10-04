@@ -23,6 +23,14 @@
                 <input type="number" name="harga_jual" class="form-control" placeholder="Harga Jual">
             </div>
         </div>
+
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label class="form-label">Satuan Barang</label>
+                <input type="text" name="satuan" class="form-control" placeholder="Satuan Barang">
+            </div>
+        </div>
+
     </div>
 
     <div class="row">

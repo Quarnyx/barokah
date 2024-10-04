@@ -10,8 +10,8 @@ switch ($_GET['page'] ?? '') {
     case 'pelanggan':
         include 'page/pelanggan/index.php';
         break;
-    case 'supplier':
-        include 'page/supplier/index.php';
+    case 'pemasok':
+        include 'page/pemasok/index.php';
         break;
     case 'barang':
         include 'page/barang/index.php';

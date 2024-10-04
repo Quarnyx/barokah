@@ -7,6 +7,11 @@
             <th>Harga Beli</th>
             <th>Harga Jual</th>
             <th>Stok</th>
+            <?php
+            session_start();
+            if ($_SESSION['level'] == "Pemilik") { ?>
+                <th>Satuan</th>
+            <?php } ?>
             <th>Aksi</th>
         </tr>
     </thead>
@@ -25,20 +30,30 @@
                 <td><?= "Rp. " . number_format($data['harga_beli'], 0, ',', '.') ?></td>
                 <td><?= "Rp. " . number_format($data['harga_jual'], 0, ',', '.') ?></td>
                 <td><?php
-                $sqlbeli = "SELECT SUM(qty) FROM pembelian WHERE id_barang = '$data[id_barang]'";
+                $sqlbeli = "SELECT SUM(qty) FROM detail_pembelian WHERE id_barang = '$data[id_barang]'";
                 $sqljual = "SELECT SUM(qty) FROM detail_penjualan WHERE id_barang = '$data[id_barang]'";
+                $sqlreturn = "SELECT SUM(jumlah) FROM return_pembelian WHERE id_barang = '$data[id_barang]'";
                 $querybeli = mysqli_query($conn, $sqlbeli);
                 $queryjual = mysqli_query($conn, $sqljual);
+                $queryreturn = mysqli_query($conn, $sqlreturn);
                 $beli = mysqli_fetch_array($querybeli);
                 $jual = mysqli_fetch_array($queryjual);
-                echo $beli[0] - $jual[0];
+                $return = mysqli_fetch_array($queryreturn);
+                echo $beli[0] - $jual[0] - $return[0];
                 ?></td>
-                <td>
-                    <button data-id="<?= $data['id_barang'] ?>" data-name="<?= $data['nama_barang'] ?>" id="edit"
-                        type="button" class="btn btn-primary">Edit</button>
-                    <button data-id="<?= $data['id_barang'] ?>" data-name="<?= $data['nama_barang'] ?>" id="delete"
-                        type="button" class="btn btn-danger">Delete</button>
-                </td>
+                <td><?= $data['satuan'] ?></td>
+                <?php
+                if ($_SESSION['level'] == "Pemilik") {
+                    ?>
+                    <td>
+                        <button data-id="<?= $data['id_barang'] ?>" data-name="<?= $data['nama_barang'] ?>" id="edit"
+                            type="button" class="btn btn-primary">Edit</button>
+                        <button data-id="<?= $data['id_barang'] ?>" data-name="<?= $data['nama_barang'] ?>" id="delete"
+                            type="button" class="btn btn-danger">Delete</button>
+                    </td>
+                    <?php
+                }
+                ?>
             </tr>
             <?php
         }

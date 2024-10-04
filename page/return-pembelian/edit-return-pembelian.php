@@ -6,6 +6,7 @@ $row = $result->fetch_assoc();
 ?>
 <form id="edit-return-pembelian" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?= $row['id_return_pembelian']; ?>">
+    <input type="hidden" name="id_transaksi" value="<?= $row['id_transaksi']; ?>">
     <div class="row">
         <div class="col-lg-6">
             <div class="mb-3">
@@ -42,6 +43,28 @@ $row = $result->fetch_assoc();
             <div class="mb-3">
                 <label for="simpleinput" class="form-label">Jumlah</label>
                 <input type="number" class="form-control" name="jumlah" value="<?= $row['jumlah']; ?>">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label for="simpleinput" class="form-label">Pemasok</label>
+                <select class="form-control select2" id="pemasok" name="id_pemasok" data-toggle="select2">
+                    <option value="">Pilih Pemasok</option>
+                    <?php
+                    require_once '../../config.php';
+                    $sqla = "SELECT * FROM pemasok";
+                    $resulta = $conn->query($sqla);
+                    while ($rowa = $resulta->fetch_assoc()) {
+                        ?>
+
+                        <option value="<?= $rowa['id_pemasok'] ?>" <?php echo $rowa['id_pemasok'] == $row['id_pemasok'] ? 'selected' : ''; ?>><?= $rowa['nama_pemasok'] ?></option>
+                        <?php
+                    }
+
+                    ?>
+                </select>
             </div>
         </div>
     </div>

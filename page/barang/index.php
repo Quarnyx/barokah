@@ -3,16 +3,21 @@ $sub_title = "Barang";
 $title = "Daftar Barang";
 include 'partials/page-title.php'; ?>
 
-<div class="row mb-2">
-    <div class="col-sm-4">
-        <button id="tambah" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
-                class="mdi mdi-plus"></i> Tambah Barang</button>
-        <button id="tambah-stok" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
-                class="mdi mdi-plus"></i> Tambah Stok</button>
-        <a href="page/barang/cetak-barang.php" target="_blank"
-            class="btn btn-primary rounded-pill waves-effect waves-light mb-3"><i class="mdi mdi-printer"></i> Cetak</a>
+<?php
+if ($_SESSION['level'] == "Pemilik") {
+    ?>
+    <div class="row mb-2">
+        <div class="col-sm-4">
+            <button id="tambah" class="btn btn-success rounded-pill waves-effect waves-light mb-3"><i
+                    class="mdi mdi-plus"></i> Tambah Barang</button>
+
+            <a href="page/barang/cetak-barang.php" target="_blank"
+                class="btn btn-primary rounded-pill waves-effect waves-light mb-3"><i class="mdi mdi-printer"></i> Cetak</a>
+        </div>
     </div>
-</div>
+    <?php
+}
+?>
 <!-- end row-->
 <div class="row">
     <div class="col-12">
@@ -41,11 +46,6 @@ include 'partials/page-title.php'; ?>
             // load form
             $('.modal-body').load('page/barang/tambah-barang.php');
         });
-        $('#tambah-stok').on('click', function () {
-            $('.modal').modal('show');
-            $('.modal-title').html('Tambah Stok');
-            // load form
-            $('.modal-body').load('page/pembelian/tambah-pembelian.php');
-        });
+
     });
 </script>

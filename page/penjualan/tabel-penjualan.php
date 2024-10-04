@@ -10,6 +10,7 @@
                             <th>Nama Barang</th>
                             <th>Harga Jual</th>
                             <th>Qty</th>
+                            <th>Satuan</th>
                             <th>Total</th>
                             <th>Aksi</th>
                         </tr>
@@ -29,6 +30,7 @@
                                 <td><?= $data['nama_barang'] ?></td>
                                 <td>Rp. <?= number_format($data['harga_jual'], 0, ',', '.') ?></td>
                                 <td><?= $data['qty'] ?></td>
+                                <td><?= $data['satuan'] ?></td>
                                 <td>Rp. <?= number_format($data['harga_jual'] * $data['qty'], 0, ',', '.') ?></td>
                                 <td>
                                     <button data-id="<?= $data['id_detail_penjualan'] ?>" id="edit" type="button"

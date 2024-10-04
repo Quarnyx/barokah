@@ -20,6 +20,7 @@ $kode = $char . sprintf("%03s", $no);
             <div class="card-body">
                 <h4 class="header-title">Kode Penjualan</h4>
                 <h2><?php echo $kode ?></h2>
+                <h4><?php echo date("Y-m-d") ?></h4>
             </div>
         </div>
     </div>

@@ -24,8 +24,8 @@
                 <td>
                     <button data-id="<?= $data['id_return_pembelian'] ?>" id="edit" type="button"
                         class="btn btn-primary">Edit</button>
-                    <button data-id="<?= $data['id_return_pembelian'] ?>" id="delete" type="button"
-                        class="btn btn-danger">Delete</button>
+                    <button data-idtransaksi="<?= $data['id_transaksi'] ?>" data-id="<?= $data['id_return_pembelian'] ?>"
+                        id="delete" type="button" class="btn btn-danger">Delete</button>
                 </td>
             </tr>
             <?php

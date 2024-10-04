@@ -12,7 +12,13 @@
         <?php
         include "../../config.php";
         $no = 0;
-        $query = mysqli_query($conn, "SELECT * FROM pengguna");
+        session_start();
+        $id_user = $_SESSION['id_user'];
+        if ($_SESSION['level'] == "Pemilik") {
+            $query = mysqli_query($conn, "SELECT * FROM pengguna");
+        } else {
+            $query = mysqli_query($conn, "SELECT * FROM pengguna WHERE id_user = '$id_user'");
+        }
         while ($data = mysqli_fetch_array($query)) {
             $no++;
             ?>
@@ -22,6 +28,9 @@
                 <td><?= $data['username'] ?></td>
                 <td><?= $data['level'] ?></td>
                 <td>
+                    <button data-password="<?= $data['password'] ?>" data-id="<?= $data['id_user'] ?>"
+                        data-name="<?= $data['username'] ?>" id="lihat-password" type="button" class="btn btn-info">Lihat
+                        Password</button>
                     <button data-id="<?= $data['id_user'] ?>" data-name="<?= $data['username'] ?>" id="edit-password"
                         type="button" class="btn btn-success">Ganti Password</button>
                     <button data-id="<?= $data['id_user'] ?>" data-name="<?= $data['username'] ?>" id="edit" type="button"
@@ -91,6 +100,16 @@
                 })
             }, function () {
                 alertify.error('Hapus dibatalkan');
+            })
+        });
+        $('#tabel-data').on('click', '#lihat-password', function () {
+            const id = $(this).data('id');
+            const name = $(this).data('name');
+            const password = $(this).data('password');
+            alertify.confirm('Password ' + name, 'Password : ' + password, function () {
+                alertify.success('Password Berhasil Ditampilkan');
+            }, function () {
+                alertify.error('Password dibatalkan');
             })
         });
     });

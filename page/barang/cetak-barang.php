@@ -38,6 +38,7 @@ session_start();
                                 <th>#</th>
                                 <th>Nama Barang</th>
                                 <th>Kode Barang</th>
+                                <th>Satuan</th>
                                 <th>Harga Beli</th>
                                 <th>Harga Jual</th>
                             </tr>
@@ -54,6 +55,7 @@ session_start();
                                     <td><?= $no ?></td>
                                     <td><?= $data['nama_barang'] ?></td>
                                     <td><?= $data['kode_barang'] ?></td>
+                                    <td><?= $data['satuan'] ?></td>
                                     <td><?= "Rp. " . number_format($data['harga_beli'], 0, ',', '.') ?></td>
                                     <td><?= "Rp. " . number_format($data['harga_jual'], 0, ',', '.') ?></td>
 

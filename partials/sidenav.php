@@ -94,9 +94,9 @@
                 </li>
 
                 <li class="menu-item">
-                    <a href="?page=supplier" class="menu-link">
+                    <a href="?page=pemasok" class="menu-link">
                         <span class="menu-icon"><i data-feather="message-square"></i></span>
-                        <span class="menu-text"> Supplier </span>
+                        <span class="menu-text"> Pemasok </span>
                     </a>
                 </li>
 
@@ -110,19 +110,24 @@
             <?php
             if ($_SESSION['level'] == "Karyawan") {
                 ?>
+                <li class="menu-item">
+                    <a href="?page=pengguna" class="menu-link">
+                        <span class="menu-icon"><i data-feather="calendar"></i></span>
+                        <span class="menu-text"> Pengguna </span>
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="?page=barang" class="menu-link">
+                        <span class="menu-icon"><i data-feather="message-square"></i></span>
+                        <span class="menu-text"> Barang </span>
+                    </a>
+                </li>
                 <li class="menu-title">Transaksi</li>
 
                 <li class="menu-item">
                     <a href="?page=penjualan" class="menu-link">
                         <span class="menu-icon"><i data-feather="message-square"></i></span>
                         <span class="menu-text"> Penjualan </span>
-                    </a>
-                </li>
-
-                <li class="menu-item">
-                    <a href="?page=return-penjualan" class="menu-link">
-                        <span class="menu-icon"><i data-feather="message-square"></i></span>
-                        <span class="menu-text"> Retur Penjualan </span>
                     </a>
                 </li>
 
